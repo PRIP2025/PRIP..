@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIP - Construye tu futuro financiero</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .logo span {
+            color: var(--secondary);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        section {
+            padding: 4rem 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        .feature-card h3 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+        .plans {
+            background-color: var(--light);
+        }
+        .plan-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .plan-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .plan-card.popular {
+            border: 2px solid var(--secondary);
+            position: relative;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .plan-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        .price {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin: 1rem 0;
+        }
+        .price span {
+            font-size: 1rem;
+            color: var(--dark);
+        }
+        .testimonials {
+            background-color: var(--primary);
+            color: white;
+        }
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        .testimonial-card p {
+            font-style: italic;
+        }
+        .testimonial-card .author {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .contact {
+            text-align: center;
+        }
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .contact-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 250px;
+        }
+        .contact-card h3 {
+            color: var(--secondary);
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            height: 150px;
+        }
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        .social-links {
+            margin: 1rem 0;
+        }
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">PR<span>IP</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#about">¿Qué es PRIP?</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#plans">Planes</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>"Invierte hoy, disfruta mañana"</h1>
+            <p>Una alternativa estratégica y confiable para construir tu futuro financiero en 3 a 5 años, sin esperar décadas.</p>
+            <a href="#contact" class="btn btn-accent">Empieza ahora</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">¿Qué es PRIP?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>Inversión gestionada</h3>
+                <p>Tu dinero lo gestiona un equipo profesional con experiencia real en el mercado financiero. No necesitas ser experto.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Resultados en 3-5 años</h3>
+                <p>Creado para ayudarte a construir una pensión anticipada en un periodo de 3 a 5 años, no décadas.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Transparencia total</h3>
+                <p>Contratos claros, reportes periódicos y gestión responsable de tu capital.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="container">
+        <h2 class="section-title">¿Qué te ofrecemos?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>Acceso profesional</h3>
+                <p>Sistema de inversión profesional sin necesidad de ser experto en finanzas.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Rentabilidad clara</h3>
+                <p>Proyecciones transparentes y realistas según cada plan de inversión.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Acompañamiento</h3>
+                <p>Reportes periódicos y atención directa para resolver tus dudas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="plans">
+        <div class="container">
+            <h2 class="section-title">Nuestros 3 Servicios</h2>
+            <div class="plan-cards">
+                <div class="plan-card">
+                    <h3>PRIP CAPITAL LITE</h3>
+                    <div class="price">$200<span>+</span></div>
+                    <p>Desde $200 hasta $10,000</p>
+                    <p>Duración: 3 a 5 años</p>
+                    <p>Ideal para construir capital sólido a mediano plazo</p>
+                    <a href="#contact" class="btn">Más información</a>
+                </div>
+                <div class="plan-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <h3>PRIP 90X</h3>
+                    <div class="price">$100<span>+</span></div>
+                    <p>Desde $100, $200, $500, $1000</p>
+                    <p>Rentabilidad cada 3 meses</p>
+                    <p>Ganancias más inmediatas sin largo plazo</p>
+                    <a href="#contact" class="btn">Más información</a>
+                </div>
+                <div class="plan-card">
+                    <h3>BOXEAQUILE</h3>
+                    <div class="price">$25<span>/mes</span></div>
+                    <p>Canal de señales para traders</p>
+                    <p>Señales, entradas y ayuda para superar pruebas de fondeo</p>
+                    <p>Desde $25 mensuales</p>
+                    <a href="#contact" class="btn">Más información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros usuarios</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <p>"Al fin tengo una forma real de invertir sin complicarme."</p>
+                    <div class="author">- Carlos M.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"No sabía nada de finanzas, y hoy tengo un plan de retiro claro."</p>
+                    <div class="author">- Ana L.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"El equipo me ayudó a crecer mi dinero sin estrés ni falsas promesas."</p>
+                    <div class="author">- Javier R.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact container">
+        <h2 class="section-title">¿Listo para cambiar tu futuro financiero?</h2>
+        <p>Contáctanos para más información o para comenzar con tu plan de inversión</p>
+        
+        <div class="contact-options">
+            <div class="contact-card">
+                <h3>Correo electrónico</h3>
+                <p>info@pripinversion.com</p>
+                <a href="mailto:info@pripinversion.com" class="btn">Enviar email</a>
+            </div>
+            <div class="contact-card">
+                <h3>WhatsApp</h3>
+                <p>+58 626 54 86</p>
+                <a href="https://wa.link/elt64m" class="btn">Enviar mensaje</a>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h3>O envíanos un mensaje directo</h3>
+            <form>
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="plan">Plan de interés</label>
+                    <select id="plan">
+                        <option value="">Selecciona un plan</option>
+                        <option value="ahorro">PRIP Capital Lite</option>
+                        <option value="90x">PRIP 90X</option>
+                        <option value="boxeaquile">BoxeAquile (Señales)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-accent">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo">PR<span>IP</span></div>
+            <p>Plan de Inversión Privada</p>
+            <div class="footer-links">
+                <a href="#about">¿Qué es PRIP?</a>
+                <a href="#services">Servicios</a>
+                <a href="#plans">Planes</a>
+                <a href="#testimonials">Testimonios</a>
+                <a href="#contact">Contacto</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2025 PRIP. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
